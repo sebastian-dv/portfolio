@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <link rel="icon" href="images/icons8-laptop-16.png" type="image/png">
+  <style>
+    section {
+      border: solid;
+    }
+
+    custom-section {
+      display: block;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px 3px lightgray;
+      padding: 20px;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Sebastian Diaz</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/projects.html">Projects</a>
+      <a href="pages/contact.html">Contact</a>
+      <a href="pages/experiments.html">Experiments</a>
+    </nav>
+    <hr>
+  </header>
+
+  <main>
+    <hello-world></hello-world>
+    <custom-section>
+      <h2>Welcome!</h2>
+      <img src="images/pfp.png" alt="picture of me" width="100" height="100">
+      <img src="images/ucsd-seal.png" alt="ucsd seal logo" width="100" height="100">
+      <p>My name is Sebastian Diaz and I'm a Computer Science major at UC San Diego. I specialize in front-end web
+        development. I enjoy creating a variety of software, exploring different fields, and facing challenges.</p>
+    </custom-section>
+
+    <custom-section>
+      <h2>Currently Working On</h2>
+      <p>I'm currently working on a project that uses the <i>Instagram API</i> to retrieve and send user messages
+        without any other functionality. This project is just for fun and for learning more about mobile development,
+        using APIs, and to stay off the reels section on Instagram.</p>
+      <label for="project-progress">Project progress:</label>
+      <progress id="project-progress" max="100" value="30">30%</progress>
+    </custom-section>
+
+  </main>
+
+  <footer>
+    <p>Fall 2025 Sebastian Diaz</p>
+  </footer>
+  <script>
+    class HelloWorld extends HTMLElement {
+      constructor() {
+        super();
+        console.log('Hello World!');
+      }
+    }
+    customElements.define('hello-world', HelloWorld);
+  </script>
+  <noscript>
+    <p>JavaScript is disabled</p>
+  </noscript>
+</body>
+
+</html>

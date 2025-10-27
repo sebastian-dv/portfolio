@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiments</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Experiments</h1>
+    <nav>
+      <a href="../index.html">Go Back</a>
+    </nav>
+  </header>
+
+  <main>
+    <template>
+      <h2>This is a template</h2>
+      <p>It is reusable</p>
+    </template>
+
+    <picture>
+      <source srcset="../images/ucsd-seal.png" width="200" media="(width >= 800px)">
+      <img src="../images/pfp.png" width="200" alt="pfp">
+    </picture>
+
+    <figure>
+      <figcaption>Rain sounds:</figcaption>
+      <audio controls src="../audio/rain-amp-thunder-sound-254476.mp3"></audio>
+    </figure>
+
+    <video controls width="1000">
+      <source src="../video/1526909-hd_1920_1080_24fps.mp4" type="video/mp4">
+      Video not supported
+    </video>
+
+    <canvas width="500" height="250">Canvas</canvas>
+  </main>
+
+  <script>
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ff00ff'
+    ctx.fillRect(10, 10, 100, 100);
+    ctx.fillStyle = '#0055dd'
+    ctx.fillRect(120, 10, 100, 100);
+    ctx.fillStyle = '#ff0000'
+    ctx.fillRect(10, 120, 100, 100);
+    ctx.fillStyle = '#99ff00'
+    ctx.fillRect(120, 120, 100, 100);
+  </script>
+</body>
+
+</html>
