@@ -99,6 +99,42 @@ body {
       list-style: none;
     }
   }
+  main#contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    form fieldset {
+      border: none;
+      div + div {
+        margin-top: 1rem;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 0.3rem;
+        resize: none;
+      }
+      button {
+        margin-top: 1rem;
+        width: 100%;
+        padding: 0.6rem 0;
+        color: white;
+        background-color: black;
+        border: none;
+        border-radius: var(--border-radius);
+      }
+    }
+    #contact-info {
+      h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      h3 ~ h3 {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
 
