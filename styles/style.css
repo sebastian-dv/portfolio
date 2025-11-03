@@ -257,7 +257,7 @@ body {
     main#projects {
       #project-showcase {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
       }
     }
@@ -288,13 +288,7 @@ body {
 
     main { }
     main#about { }
-    main#projects {
-      #project-showcase {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        gap: 2rem;
-      }
-    }
+    main#projects { }
     main#contact { }
   }
 }
