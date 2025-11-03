@@ -11,12 +11,12 @@
 
   --header-height: 10vh;
 
-  --default-purple: #9b9be7;
+  --main-purple: #9b9be7;
   --light-purple: #d9d9f6;
 
-  --font-header: "Roboto Mono", Arial, sans serif;
-  --font-subheader: "Asap", Arial, sans serif;
-  --font-body: "Biryani", Arial, sans serif;
+  --font-header: "Roboto Mono", Arial, sans-serif;
+  --font-subheader: "Asap", Arial, sans-serif;
+  --font-body: "Biryani", Arial, sans-serif;
 }
 
 * {
@@ -37,20 +37,20 @@
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body, sans-serif);
   header {
     display: flex;
     flex-direction: column;
     min-height: var(--header-height);
-    background-color: var(--light-purple);
-    padding: var(--page-padding-y) var(--page-padding-x);
+    background-color: var(--light-purple, #d9d9f6);
+    padding: var(--page-padding-y, 3vh) var(--page-padding-x, 3vw);
     justify-content: space-between;
     #header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       h1 {
-        font-family: var(--font-header);
+        font-family: var(--font-header, sans-serif);
       }
       label {
         font-size: 1.5rem;
@@ -87,13 +87,13 @@ body {
   }
 
   main {
-    padding: var(--page-padding-y) var(--page-padding-x);
+    padding: var(--page-padding-y, 3vh) var(--page-padding-x, 3vw);
     h2, h3 {
-      font-family: var(--font-subheader);
+      font-family: var(--font-subheader, sans-serif);
     }
     #landing-section {
       padding-top: 5vh;
-      height: calc(100vh - var(--header-height));
+      height: calc(100vh - var(--header-height, 10vh));
       animation: fadeIn 0.6s ease-out forwards;
       #landing-pictures {
         display: flex;
@@ -102,7 +102,7 @@ body {
         }
       }
       h2 {
-        font-family: var(--font-header);
+        font-family: var(--font-header, sans-serif);
         font-size: 4rem;
       }
       p {
@@ -111,8 +111,8 @@ body {
     }
     .card {
       background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: 0 0 var(--shadow-blur) var(--shadow-spread) lightgray;
+      border-radius: var(--border-radius, 0.5rem);
+      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) lightgray;
       padding: 2rem;
       animation: fadeIn 0.6s ease-out forwards;
       hr {
@@ -170,7 +170,7 @@ body {
         color: white;
         background-color: black;
         border: none;
-        border-radius: var(--border-radius);
+        border-radius: var(--border-radius, 0.5rem);
       }
     }
     #contact-info {
@@ -212,14 +212,14 @@ body {
             text-decoration: none;
             background-color: white;
             padding: 0.5rem 1rem 0.2rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius, 0.5rem);
           }
           a:hover {
             background-color: gray;
             color: white;
           }
           a:active {
-            background-color: var(--default-purple);
+            background-color: var(--main-purple, #9b9be7);
             color: white;
           }
         }
@@ -238,7 +238,7 @@ body {
           }
         }
         h2 {
-          font-family: var(--font-header);
+          font-family: var(--font-header, sans-serif);
           font-size: 8rem;
         }
       }
