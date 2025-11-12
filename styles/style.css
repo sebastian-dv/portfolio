@@ -45,6 +45,9 @@ body {
   background-color: light-dark(white, #282828);
   color: light-dark(black, #ebdbb2);
   font-family: var(--font-body, sans-serif);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   header {
     display: flex;
     flex-direction: column;
@@ -95,6 +98,7 @@ body {
 
   main {
     padding: var(--page-padding-y, 3vh) var(--page-padding-x, 3vw);
+    flex: 1;
     h2, h3 {
       font-family: var(--font-subheader, sans-serif);
     }
