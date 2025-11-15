@@ -102,6 +102,18 @@ body {
     h2, h3 {
       font-family: var(--font-subheader, sans-serif);
     }
+    .card {
+      background-color: light-dark(white, #928374);
+      border-radius: var(--border-radius, 0.5rem);
+      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) light-dark(lightgray, gray);
+      padding: 2rem;
+      animation: fadeIn 0.6s ease-out forwards;
+      hr {
+        margin: 0.7rem 0;
+      }
+    }
+  }
+  main#home {
     #landing-section {
       padding-top: 5vh;
       height: calc(100vh - var(--header-height, 10vh));
@@ -120,21 +132,6 @@ body {
         max-width: 70ch;
       }
     }
-    .card {
-      background-color: light-dark(white, #928374);
-      border-radius: var(--border-radius, 0.5rem);
-      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) light-dark(lightgray, gray);
-      padding: 2rem;
-      animation: fadeIn 0.6s ease-out forwards;
-      hr {
-        margin: 0.7rem 0;
-      }
-    }
-    .card-group {
-      #education {
-        margin-bottom: 2rem;
-      }
-    }
   }
   main#about {
     display: flex;
@@ -151,6 +148,11 @@ body {
     }
     ol {
       list-style: none;
+    }
+    .card-group {
+      #education {
+        margin-bottom: 2rem;
+      }
     }
   }
   main#projects {
