@@ -47,7 +47,8 @@
         </div>
         <div>
           <label for="subject">Subject</label><br>
-          <input type="text" name="subject" id="subject" minlength="2" maxlength="30" pattern="[A-Za-z\s\-]+" required>
+          <input type="text" name="subject" id="subject" minlength="2" maxlength="30" pattern="[A-Za-z0-9\s\-]+"
+            required>
         </div>
         <div>
           <label for="message">Message</label><br>
@@ -112,6 +113,71 @@
     <p>&copy; 2025 Sebastian Diaz</p>
   </footer>
 
+  <script defer>
+    let inputName;
+    let inputEmail;
+    let inputSubject;
+    let inputMessage;
+
+    let errorOut;
+    let infoOut;
+    let form_errors = [];
+
+    function loadHandler() {
+      inputName = document.querySelector('input#name');
+      inputEmail = document.querySelector('input#email');
+      inputSubject = document.querySelector('input#subject');
+      inputMessage = document.querySelector('textarea#message');
+
+      errorOut = document.querySelector('output#form-error');
+      infoOut = document.querySelector('output#form-info');
+
+      inputName.addEventListener('input', validateName);
+      inputEmail.addEventListener('blur', validateEmail);
+      inputSubject.addEventListener('input', validateSubject);
+    }
+
+    function showError(msg) {
+      errorOut.innerHTML = msg;
+      errorOut.classList.add('show');
+      console.log('showError!');
+
+      setTimeout(() => {
+        errorOut.classList.remove('show');
+      }, 3000);
+    }
+
+    function flash(el) {
+      console.log('flash!');
+      el.classList.add('flash');
+      setTimeout(() => {
+        el.classList.remove('flash');
+      }, 500)
+    }
+
+    function validateName() {
+      if (inputName.validity.patternMismatch) {
+        showError('Illegal character in name field');
+        flash(inputName);
+      }
+    }
+
+    function validateSubject() {
+      if (inputSubject.validity.patternMismatch) {
+        showError('Illegal character in subject field');
+        flash(inputSubject);
+      }
+    }
+
+    function validateEmail() {
+      if (inputEmail.validity.typeMismatch) {
+        showError('Invalid email');
+        flash(inputEmail);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadHandler);
+  </script>
 
 </body>
 

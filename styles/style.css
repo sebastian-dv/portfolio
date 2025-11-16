@@ -188,6 +188,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    form {
+      min-width: 17vw;
+    }
     form fieldset {
       border: none;
       div + div {
@@ -206,6 +209,24 @@ body {
       input:user-invalid,
       textarea:user-invalid {
         border-color: light-dark(#d65d0e, #fb4935);
+      }
+
+      #form-error, #form-info {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 0.3rem;
+        padding: 0.2rem 0;
+        opacity: 0;
+        transition: opacity .3s;
+      }
+
+      #form-error.show, #form-info.show {
+        opacity: 1;
+      }
+
+      .flash {
+        outline: 2px solid red !important;
       }
 
       button {
