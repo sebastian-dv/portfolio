@@ -31,7 +31,7 @@
   <hr>
 
   <main id="contact">
-    <form class="card">
+    <form class="card" action="https://httpbin.org/post" method="post">
       <fieldset>
         <legend>
           <h2>Send me a message</h2>
@@ -39,21 +39,24 @@
         <hr>
         <div>
           <label for="name">Name</label><br>
-          <input type="text" name="name" id="name" required>
+          <input type="text" name="name" id="name" minlength="2" maxlength="30" pattern="[A-Za-z\s\-]+" required>
         </div>
         <div>
           <label for="email">Email</label><br>
-          <input type="email" name="email" id="email" required>
+          <input type="email" name="email" id="email" minlength="2" maxlength="30" required>
         </div>
         <div>
           <label for="subject">Subject</label><br>
-          <input type="text" name="subject" id="subject" required>
+          <input type="text" name="subject" id="subject" minlength="2" maxlength="30" pattern="[A-Za-z\s\-]+" required>
         </div>
         <div>
           <label for="message">Message</label><br>
-          <textarea id="message" name="message" rows="10" cols="24" required></textarea>
+          <textarea id="message" name="message" rows="10" cols="24" maxlength="300" required></textarea>
         </div>
-        <button type="button">Submit</button>
+        <input type="hidden" name="possible_bot" value="true">
+        <button type="submit">Submit</button>
+        <output id="form-error"></output>
+        <output id="form-info"></output>
       </fieldset>
     </form>
 
