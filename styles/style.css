@@ -17,7 +17,7 @@
   --header-color: light-dark(#83a598, #98971a);
   --header-text-color: light-dark(white, white);
   --nav-color: light-dark(#458588, #b8bb26);
-  --nav-active-color: light-dark(white, #9b9be7);
+  --nav-active-color: light-dark(white, #282828);
   --nav-text-active-color: light-dark(black, white);
   --text-color: light-dark(black, #ebdbb2);
   --h2-color: light-dark(#458588, #98971a);
@@ -27,6 +27,14 @@
   --font-header: "Roboto Mono", Arial, sans-serif;
   --font-subheader: "Asap", Arial, sans-serif;
   --font-body: "Biryani", Arial, sans-serif;
+}
+
+.light-theme {
+  color-scheme: light;
+}
+
+.dark-theme {
+  color-scheme: dark;
 }
 
 * {
@@ -83,13 +91,28 @@ body {
         li {
           list-style: none;
         }
-        a {
+        a, button {
           color: var(--header-text-color);
+          background-color: var(--header-color);
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.9rem;
           display: block;
-          padding-top: 1rem;
+          padding: 0.6rem 0 0.3rem;
           text-decoration: none;
+          border: none;
+          border-radius: var(--border-radius, 0.5rem);
           width: 100%;
           text-align: center;
+          cursor: pointer;
+        }
+        a:active, button:active {
+          background-color: var(--nav-color);
+        }
+        #theme-toggle {
+          display: none;
+        }
+        .js-enabled#theme-toggle {
+          display: block;
         }
       }
       input:checked ~ #hamburger-items {
@@ -291,17 +314,15 @@ body {
         #hamburger-items {
           display: flex;
           gap: 1rem;
-          a {
-            text-decoration: none;
+          a, button {
             background-color: var(--nav-color);
             padding: 0.5rem 1rem 0.2rem;
-            border-radius: var(--border-radius, 0.5rem);
           }
-          a:hover {
+          a:hover, button:hover {
             background-color: light-dark(lightgrey, grey);
             color: white;
           }
-          a:active {
+          a:active, button:active {
             background-color: var(--nav-active-color);
             color: var(--nav-text-active-color);
           }
