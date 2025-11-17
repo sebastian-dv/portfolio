@@ -19,4 +19,15 @@ function toggleTheme() {
   localStorage.setItem('theme', currentTheme);
 }
 
-themeToggleBtn.addEventListener('click', toggleTheme);
+function changeTheme() {
+  if (!document.startViewTransition) {
+    toggleTheme();
+    return;
+  }
+
+  document.startViewTransition(() => {
+    toggleTheme();
+  })
+}
+
+themeToggleBtn.addEventListener('click', changeTheme);
