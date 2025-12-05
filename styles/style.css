@@ -193,13 +193,17 @@ body {
       display: flex;
       gap: 1rem;
       justify-content: center;
+      margin-bottom: 1.5rem;
       button {
-        padding: 0.6rem 1rem;
+        font-family: var(--font-body, sans-serif);
+        padding: 0.6rem 1rem 0.3rem;
         color: light-dark(white, #ebdbb2);
         background-color: light-dark(#b16286, #d65d0e);
         border: none;
         border-radius: var(--border-radius, 0.5rem);
+        cursor: pointer;
       }
+
     }
     #project-showcase {
       display: flex;

@@ -1,3 +1,29 @@
+
+document.querySelector('#load-remote').addEventListener('click', async () => {
+  const res = await fetch('https://api.jsonbin.io/v3/b/693257c5ae596e708f848e4c');
+  const json = await res.json();
+  const data = json.record;
+  renderCards(data);
+});
+
+function renderCards(projects) {
+  const grid = document.querySelector('#project-showcase');
+  grid.innerHTML = '';
+
+  projects.forEach(p => {
+    const card = document.createElement('project-card');
+
+    card.setAttribute('title', p.title) || 'Untitled';
+    card.setAttribute('img', p.img) || '';
+    card.setAttribute('img-alt', p.imgAlt) || 'project image';
+    card.setAttribute('desc', p.desc) || '';
+    card.setAttribute('link', p.link) || '#';
+    card.setAttribute('target', p.target) || '_blank';
+
+    grid.appendChild(card);
+  });
+}
+
 class ProjectCard extends HTMLElement {
   constructor() {
     super();
@@ -14,9 +40,10 @@ class ProjectCard extends HTMLElement {
     const title = this.getAttribute('title') || 'Untitled';
     const img = this.getAttribute('img') || '';
     const imgAlt = this.getAttribute('img-alt') || 'project image';
-    const desc = this.getAttribute('desc') || 'desc';
+    const desc = this.getAttribute('desc') || '';
     const link = this.getAttribute('link') || '#';
     const target = this.getAttribute('target') || '_blank';
+
     const linkText = target === '_self' ? 'No Repo Available :(' : 'GitHub Repo';
     const srcsetWebp = `${img}-200.webp 200w, ${img}-400.webp 400w`;
     const srcsetJpeg = `${img}-200.jpeg 200w, ${img}-400.jpeg 400w`;
