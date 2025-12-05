@@ -18,6 +18,9 @@ class ProjectCard extends HTMLElement {
     const link = this.getAttribute('link') || '#';
     const target = this.getAttribute('target') || '_blank';
     const linkText = target === '_self' ? 'No Repo Available :(' : 'GitHub Repo';
+    const srcsetWebp = `${img}-200.webp 200w, ${img}-400.webp 400w`;
+    const srcsetJpeg = `${img}-200.jpeg 200w, ${img}-400.jpeg 400w`;
+    const jpegImg = `${img}-400.jpeg`;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -61,7 +64,9 @@ class ProjectCard extends HTMLElement {
       </style>
       <div class="card">
         <picture>
-          <img src="${img}" alt="${imgAlt}">
+          <source type="image/webp" srcset="${srcsetWebp}">
+          <source type="image/jpeg" srcset="${srcsetJpeg}">
+          <img src="${jpegImg}" alt="${imgAlt}">
         </picture>
         <h2>${title}</h2>
         <p>${desc}</p>
