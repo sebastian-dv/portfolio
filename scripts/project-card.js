@@ -24,6 +24,34 @@ function renderCards(projects) {
   });
 }
 
+const localProjects = [
+  {
+    "title": "Typing Game",
+    "img": "../images/typing-game-thumbnail",
+    "imgAlt": "playing typing game",
+    "desc": "Speed typing game made with React, Vite, and using the Quotable API. Gets a random quote for user to type has dynamic feedback for mistakes and keeps track of speed in WPM.",
+    "link": "https://github.com/sebastian-dv/typing-game"
+  },
+  {
+    "title": "Blackjack",
+    "img": "../images/blackjack-thumbnail",
+    "imgAlt": "playing blackjack",
+    "desc": "Built a single-player GUI blackjack game using Java Swing. Implemented dealer logic and game state management with clear win/loss conditions.",
+    "link": "https://github.com/sebastian-dv/blackjack"
+  }
+];
+localStorage.setItem('projects', JSON.stringify(localProjects));
+
+document.querySelector('#load-local').addEventListener('click', () => {
+  const data = localStorage.getItem('projects');
+  if (!data) {
+    console.err('Local data not found');
+    return;
+  }
+  const projects = JSON.parse(data);
+  renderCards(projects);
+});
+
 class ProjectCard extends HTMLElement {
   constructor() {
     super();
