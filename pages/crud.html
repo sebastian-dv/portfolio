@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crud</title>
+  <link rel="icon" href="../images/icons8-laptop-16.png" type="image/png">
+  <link rel="stylesheet" href="../styles/style.css">
+  <script src="../scripts/script.js" defer></script>
+  <script src="../scripts/crud.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <div id="header-top">
+      <h1>Sebastian Diaz</h1>
+      <label for="hamburger">&#9776</label>
+    </div>
+    <nav>
+      <input type="checkbox" id="hamburger">
+      <ul id="hamburger-items">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="crud.html">Crud</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><button id="theme-toggle">Switch Theme</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <hr>
+
+  <main id="crud">
+    <form class="card" action="" method="post">
+        <fieldset>
+          <legend>
+            <h2>Create Project</h2>
+          </legend>
+          <hr>
+
+          <label for="title" required>Title</label>
+          <input type="text" name="title" id="title">
+
+          <label for="image">Image URL</label>
+          <input type="url" name="image" id="image">
+
+          <label for="image-alt">Image Description</label>
+          <input type="text" name="image-alt" id="image-alt">
+
+          <label for="link">Repo URL</label>
+          <input type="url" name="link" id="link">
+
+          <label for="desc">Description</label>
+          <textarea name="desc" id="desc" rows="4"></textarea>
+
+          <div>
+            <button>Create Local</button>
+            <button>Create Remote</button>
+          </div>
+        </fieldset>
+    </form>
+    <form class="card" action="" method="post">
+        <fieldset>
+          <legend>
+            <h2>Update Project</h2>
+          </legend>
+          <hr>
+
+          <label for="title" required>Title</label>
+          <input type="text" name="title" id="title">
+
+          <label for="image">Image URL</label>
+          <input type="url" name="image" id="image">
+
+          <label for="image-alt">Image Description</label>
+          <input type="text" name="image-alt" id="image-alt">
+
+          <label for="link">Repo URL</label>
+          <input type="url" name="link" id="link">
+
+          <label for="desc">Description</label>
+          <textarea name="desc" id="desc" rows="4"></textarea>
+
+          <div>
+            <button>Update Local</button>
+            <button>Update Remote</button>
+          </div>
+        </fieldset>
+    </form>
+    <form class="card" action="" method="post">
+        <fieldset>
+          <legend>
+            <h2>Remove Project</h2>
+          </legend>
+          <hr>
+
+          <label for="title" required>Title</label>
+          <input type="text" name="title" id="title">
+
+          <div>
+            <button>Remove Local</button>
+            <button>Remove Remote</button>
+          </div>
+        </fieldset>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sebastian Diaz</p>
+  </footer>
+
+</body>
+
+</html>

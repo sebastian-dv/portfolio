@@ -138,6 +138,15 @@ body {
     h3 {
       color: var(--h3-color);
     }
+    button {
+      font-family: var(--font-body, sans-serif);
+      padding: 0.6rem 1rem 0.3rem;
+      color: var(--button-color);
+      background-color: var(--button-bg-color);
+      border: none;
+      border-radius: var(--border-radius, 0.5rem);
+      cursor: pointer;
+    }
     .card {
       background-color: var(--card-color);
       border-radius: var(--border-radius, 0.5rem);
@@ -194,15 +203,6 @@ body {
       gap: 1rem;
       justify-content: center;
       margin-bottom: 1.5rem;
-      button {
-        font-family: var(--font-body, sans-serif);
-        padding: 0.6rem 1rem 0.3rem;
-        color: light-dark(white, #ebdbb2);
-        background-color: light-dark(#b16286, #d65d0e);
-        border: none;
-        border-radius: var(--border-radius, 0.5rem);
-        cursor: pointer;
-      }
 
     }
     #project-showcase {
@@ -223,6 +223,31 @@ body {
       }
     }
   }
+  main#crud {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    form {
+      max-width: 450px;
+      width: 100%;
+    }
+    form fieldset{
+      display: flex;
+      flex-direction: column;
+      border: none;
+      input, textarea {
+        width: 100%;
+        padding: 0.3rem;
+        resize: none;
+        margin-bottom: 1rem;
+      }
+      div {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+  }
   main#contact {
     display: flex;
     flex-direction: column;
@@ -232,13 +257,11 @@ body {
     }
     form fieldset {
       border: none;
-      div + div {
-        margin-top: 1rem;
-      }
       input, textarea {
         width: 100%;
         padding: 0.3rem;
         resize: none;
+        margin-bottom: 1rem;
       }
 
       input:focus,
@@ -276,15 +299,8 @@ body {
       .flash {
         outline: 2px solid red !important;
       }
-
       button {
-        margin-top: 1rem;
         width: 100%;
-        padding: 0.6rem 0;
-        color: light-dark(white, #ebdbb2);
-        background-color: light-dark(#b16286, #d65d0e);
-        border: none;
-        border-radius: var(--border-radius, 0.5rem);
       }
     }
     #contact-info {
