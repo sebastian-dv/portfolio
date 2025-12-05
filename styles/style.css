@@ -23,6 +23,8 @@
   --h2-color: light-dark(#458588, #98971a);
   --h3-color: light-dark(#076678, #d79921);
   --card-color: light-dark(#e4e5f1, #504945);
+  --button-bg-color: light-dark(#b16286, #d65d0e);
+  --button-color: light-dark(white, #ebdbb2);
 
   --font-header: "Roboto Mono", Arial, sans-serif;
   --font-subheader: "Asap", Arial, sans-serif;
@@ -187,6 +189,18 @@ body {
     }
   }
   main#projects {
+    #load-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      button {
+        padding: 0.6rem 1rem;
+        color: light-dark(white, #ebdbb2);
+        background-color: light-dark(#b16286, #d65d0e);
+        border: none;
+        border-radius: var(--border-radius, 0.5rem);
+      }
+    }
     #project-showcase {
       display: flex;
       flex-direction: column;

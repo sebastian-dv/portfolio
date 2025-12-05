@@ -31,8 +31,6 @@ class ProjectCard extends HTMLElement {
         :host {
           max-width: 350px;
           width: 100%;
-          --button-bg-color: light-dark(#b16286, #d65d0e);
-          --button-color: light-dark(white, #ebdbb2);
         }
         .card {
           border-radius: var(--border-radius);
