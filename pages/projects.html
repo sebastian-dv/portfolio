@@ -8,6 +8,7 @@
   <link rel="icon" href="../images/icons8-laptop-16.png" type="image/png">
   <link rel="stylesheet" href="../styles/style.css">
   <script src="../scripts/script.js" defer></script>
+  <script src="../scripts/project-card.js" defer></script>
 </head>
 
 <body>
@@ -32,77 +33,45 @@
   <hr>
 
   <main id="projects">
-    <section class="card">
-      <h2>Projects</h2>
-      <hr>
-      <div id="project-showcase">
-        <article>
-          <h3>Typing Game</h3>
-          <div class="project-content">
-            <p>
-              Speed typing game made with React, Vite, and using the Quotable API. Gets a random quote for user to type
-              has dynamic feedback for mistakes and keeps track of speed in WPM.
-            </p>
-            <picture>
-              <source type="image/webp" srcset="../images/typing-game-thumbnail-200.webp 200w,
-                                                  ../images/typing-game-thumbnail-400.webp 400w">
-              <source type="image/jpeg" srcset="../images/typing-game-thumbnail-200.jpg 200w,
-                                                  ../images/typing-game-thumbnail-400.jpg 400w">
-              <img src="../images/typing-game-thumbnail-200.jpg"
-                alt="screenshot of quote, feedback to typing, and input from tryping game">
-            </picture>
-          </div>
-        </article>
-        <article>
-          <h3>Predicting Diseases</h3>
-          <div class="project-content">
-            <p>
-              Used machine learning models to predict the presence of eight critical diseases using a medical dataset.
-              By comparing multiple algorithms, we find which approaches most effectively identify disease outcomes.
-            </p>
-            <picture>
-              <source type="image/webp" srcset="../images/model-thumbnail-200.webp 200w,
-                                                ../images/model-thumbnail-400.webp 400w">
-              <source type="image/jpeg" srcset="../images/model-thumbnail-200.jpg 200w,
-                                                ../images/model-thumbnail-400.jpg 400w">
-              <img src="../images/model-thumbnail-200.jpg" alt="screenshot of feature importance plot">
-            </picture>
-          </div>
-        </article>
-        <article>
-          <h3>Blackjack</h3>
-          <div class="project-content">
-            <p>
-              Built a single-player GUI blackjack game using Java Swing. Implemented dealer logic and game state
-              management with clear win/loss conditions.
-            </p>
-            <picture>
-              <source type="image/webp" srcset="../images/blackjack-thumbnail-200.webp 200w,
-                                                ../images/blackjack-thumbnail-400.webp 400w">
-              <source type="image/jpeg" srcset="../images/blackjack-thumbnail-200.jpg 200w,
-                                                ../images/blackjack-thumbnail-400.jpg 400w">
-              <img src="../images/blacjack-thumbnail-200.jpg" alt="playing blackjack">
-            </picture>
-          </div>
-        </article>
-        <article>
-          <h3>To-Do List</h3>
-          <div class="project-content">
-            <p>
-              Feature-rich Android to-do list app supporting task filtering, tagging, and recurring
-              tasks. Built collaboratively in Android Studio using Agile development practices to ensure
-              continuous improvement and a polished final product.
-            </p>
-            <picture>
-              <source type="image/webp" srcset="../images/to-do-thumbnail-200.webp 200w,
-                                                ../images/to-do-thumbnail-400.webp 400w">
-              <source type="image/jpeg" srcset="../images/to-do-thumbnail-200.jpg 200w,
-                                                ../images/to-do-thumbnail-400.jpg 400w">
-              <img src="../images/to-do-thumbnail-200.jpg" alt="to do list">
-            </picture>
-          </div>
-        </article>
-      </div>
+    <section id="project-showcase">
+        <project-card
+          title="Typing Game"
+          img="../images/typing-game-thumbnail-400.webp"
+          img-alt="playing typing game"
+          desc="Speed typing game made with React, Vite, and using
+            the Quotable API. Gets a random quote for user to type
+            has dynamic feedback for mistakes and keeps track of speed in WPM."
+          link="https://github.com/sebastian-dv/typing-game">
+        </project-card>
+        <project-card
+          title="Predicting Diseases"
+          img="../images/model-thumbnail-400.webp"
+          img-alt="feature importance plot"
+          desc="Used machine learning models to predict the presence of eight
+            critical diseases using a medical dataset. By comparing multiple
+            algorithms, we find which approaches most effectively identify
+            disease outcomes."
+          link="https://github.com/sebastian-dv/CSE-151A-Project">
+        </project-card>
+        <project-card
+          title="Blackjack"
+          img="../images/blackjack-thumbnail-400.webp"
+          img-alt="playing blackjack"
+          desc="Built a single-player GUI blackjack game using Java Swing.
+            Implemented dealer logic and game state management with clear
+            win/loss conditions."
+          link="https://github.com/sebastian-dv/blackjack">
+        </project-card>
+        <project-card
+          title="To-Do List"
+          img="../images/to-do-thumbnail-400.webp"
+          img-alt="to-do list"
+          desc="Feature-rich Android to-do list app supporting task
+            filtering, tagging, and recurring tasks. Built collaboratively
+            in Android Studio using Agile development practices to ensure
+            continuous improvement and a polished final product. "
+          target="_self">
+        </project-card>
     </section>
   </main>
 
