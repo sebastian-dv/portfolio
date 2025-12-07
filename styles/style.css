@@ -155,6 +155,9 @@ body {
         margin: 0.7rem 0;
       }
     }
+    .flash {
+      outline: 2px solid red !important;
+    }
   }
   main#home {
     #landing-section {
@@ -246,6 +249,16 @@ body {
         display: flex;
         gap: 1rem;
       }
+      output {
+        width: 100%;
+        height: 0.4rem;
+        padding: 0.2rem 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .show {
+        opacity: 1;
+      }
     }
   }
   main#contact {
@@ -296,9 +309,6 @@ body {
         opacity: 1;
       }
 
-      .flash {
-        outline: 2px solid red !important;
-      }
       button {
         width: 100%;
       }

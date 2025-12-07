@@ -9,6 +9,31 @@ function setLocal(cards) {
   localStorage.setItem('projects', JSON.stringify(cards));
 }
 
+function containsProject(title) {
+  const cards = getLocal();
+  return cards.find(c => c.title === title);
+}
+
+function flash(el) {
+  el.classList.add('flash');
+  setTimeout(() => {
+    el.classList.remove('flash');
+  }, 4000);
+}
+
+function reveal(el) {
+  el.classList.add('show');
+  setTimeout(() => {
+    el.classList.remove('show');
+  }, 4000);
+}
+
+function formError(err, output, el) {
+  output.value = err;
+  reveal(output);
+  flash(el);
+}
+
 function createLocal(title, img, imgAlt, desc, link) {
   const cards = getLocal();
   const newCard = {
@@ -19,6 +44,13 @@ function createLocal(title, img, imgAlt, desc, link) {
     'link': link,
     'target': link === '' ? '_self' : '_blank'
   };
+  if (containsProject(title)) {
+    console.log('duplicate project title');
+    let output = document.querySelector('#create-output');
+    let title = document.querySelector('#create-form').elements['title'];
+    formError('A project with that title already exists', output, title);
+    return;
+  }
   cards.push(newCard);
   setLocal(cards);
 }
