@@ -40,7 +40,9 @@ const localProjects = [
     "link": "https://github.com/sebastian-dv/blackjack"
   }
 ];
-localStorage.setItem('projects', JSON.stringify(localProjects));
+if (localStorage.getItem('projects') === '') {
+  localStorage.setItem('projects', JSON.stringify(localProjects));
+}
 
 document.querySelector('#load-local').addEventListener('click', () => {
   const data = localStorage.getItem('projects');
@@ -67,15 +69,33 @@ class ProjectCard extends HTMLElement {
   render() {
     const title = this.getAttribute('title') || 'Untitled';
     const img = this.getAttribute('img') || '';
-    const imgAlt = this.getAttribute('img-alt') || 'project image';
+    const imgAlt = this.getAttribute('img-alt') || '';
     const desc = this.getAttribute('desc') || '';
     const link = this.getAttribute('link') || '#';
     const target = this.getAttribute('target') || '_blank';
 
     const linkText = target === '_self' ? 'No Repo Available :(' : 'GitHub Repo';
+
     const srcsetWebp = `${img}-200.webp 200w, ${img}-400.webp 400w`;
     const srcsetJpeg = `${img}-200.jpeg 200w, ${img}-400.jpeg 400w`;
     const jpegImg = `${img}-400.jpeg`;
+
+    let pictureHtml = '';
+    if (img.startsWith('../images')) {
+      pictureHtml = `
+        <picture>
+          <source type="image/webp" srcset="${srcsetWebp}">
+          <source type="image/jpeg" srcset="${srcsetJpeg}">
+          <img src="${jpegImg}" alt="${imgAlt}">
+        </picture>
+      `;
+    } else {
+      pictureHtml = `
+        <picture>
+          <img src="${img}" alt="${imgAlt}">
+        </picture>
+      `
+    }
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -116,11 +136,7 @@ class ProjectCard extends HTMLElement {
         }
       </style>
       <div class="card">
-        <picture>
-          <source type="image/webp" srcset="${srcsetWebp}">
-          <source type="image/jpeg" srcset="${srcsetJpeg}">
-          <img src="${jpegImg}" alt="${imgAlt}">
-        </picture>
+        ${pictureHtml}
         <h2>${title}</h2>
         <p>${desc}</p>
         <a href="${link}" target="${target}">${linkText}</a>

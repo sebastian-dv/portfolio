@@ -34,77 +34,77 @@
   <hr>
 
   <main id="crud">
-    <form class="card" action="" method="post">
-        <fieldset>
-          <legend>
-            <h2>Create Project</h2>
-          </legend>
-          <hr>
+    <form id="create-form" class="card" method="post">
+      <fieldset>
+        <legend>
+          <h2>Create Project</h2>
+        </legend>
+        <hr>
 
-          <label for="title" required>Title</label>
-          <input type="text" name="title" id="title">
+        <label for="title" required>Title</label>
+        <input type="text" name="title" id="title">
 
-          <label for="image">Image URL</label>
-          <input type="url" name="image" id="image">
+        <label for="image">Image URL</label>
+        <input type="url" name="image" id="image">
 
-          <label for="image-alt">Image Description</label>
-          <input type="text" name="image-alt" id="image-alt">
+        <label for="image-alt">Image Description</label>
+        <input type="text" name="image-alt" id="image-alt">
 
-          <label for="link">Repo URL</label>
-          <input type="url" name="link" id="link">
+        <label for="link">Repo URL</label>
+        <input type="url" name="link" id="link">
 
-          <label for="desc">Description</label>
-          <textarea name="desc" id="desc" rows="4"></textarea>
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" rows="4"></textarea>
 
-          <div>
-            <button>Create Local</button>
-            <button>Create Remote</button>
-          </div>
-        </fieldset>
+        <div id="create-buttons">
+          <button id="create-local">Create Local</button>
+          <button id="create-remote">Create Remote</button>
+        </div>
+      </fieldset>
     </form>
-    <form class="card" action="" method="post">
-        <fieldset>
-          <legend>
-            <h2>Update Project</h2>
-          </legend>
-          <hr>
+    <form id="update-form" class="card" method="post">
+      <fieldset>
+        <legend>
+          <h2>Update Project</h2>
+        </legend>
+        <hr>
 
-          <label for="title" required>Title</label>
-          <input type="text" name="title" id="title">
+        <label for="title" required>Title</label>
+        <input type="text" name="title" id="title">
 
-          <label for="image">Image URL</label>
-          <input type="url" name="image" id="image">
+        <label for="image">Image URL</label>
+        <input type="url" name="image" id="image">
 
-          <label for="image-alt">Image Description</label>
-          <input type="text" name="image-alt" id="image-alt">
+        <label for="image-alt">Image Description</label>
+        <input type="text" name="image-alt" id="image-alt">
 
-          <label for="link">Repo URL</label>
-          <input type="url" name="link" id="link">
+        <label for="link">Repo URL</label>
+        <input type="url" name="link" id="link">
 
-          <label for="desc">Description</label>
-          <textarea name="desc" id="desc" rows="4"></textarea>
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" rows="4"></textarea>
 
-          <div>
-            <button>Update Local</button>
-            <button>Update Remote</button>
-          </div>
-        </fieldset>
+        <div id="update-buttons">
+          <button id="update-local">Update Local</button>
+          <button id="update-remote">Update Remote</button>
+        </div>
+      </fieldset>
     </form>
-    <form class="card" action="" method="post">
-        <fieldset>
-          <legend>
-            <h2>Remove Project</h2>
-          </legend>
-          <hr>
+    <form id="remove-form" class="card" method="post">
+      <fieldset>
+        <legend>
+          <h2>Remove Project</h2>
+        </legend>
+        <hr>
 
-          <label for="title" required>Title</label>
-          <input type="text" name="title" id="title">
+        <label for="title" required>Title</label>
+        <input type="text" name="title" id="title">
 
-          <div>
-            <button>Remove Local</button>
-            <button>Remove Remote</button>
-          </div>
-        </fieldset>
+        <div id="remove-buttons">
+          <button id="remove-local">Remove Local</button>
+          <button id="remove-remote">Remove Remote</button>
+        </div>
+      </fieldset>
     </form>
   </main>
 
