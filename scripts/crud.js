@@ -9,6 +9,12 @@ function setLocal(projects) {
   localStorage.setItem('projects', JSON.stringify(projects));
 }
 
+function removeLocalProject(title) {
+  const projects = getLocal();
+  const updated = projects.filter(p => p.title !== title);
+  setLocal(updated);
+}
+
 function getLocalProject(title) {
   const projects = getLocal();
   return projects.find(p => p.title === title);
@@ -165,6 +171,29 @@ updateForm.addEventListener('submit', (event) => {
     console.log('updating remote');
     updateSelect();
     clearForm(updateForm);
+  }
+});
+
+const removeForm = document.querySelector('#remove-form');
+removeForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const fields = removeForm.elements;
+  const select = fields['select'];
+  const option = select.options[select.selectedIndex];
+  const title = option.value;
+  const output = document.querySelector('#remove-output');
+  if (title === '') {
+    formError('Please select a project', output, select);
+    return;
+  }
+  const optGroup = option.closest('optgroup').id;
+  if (optGroup === 'remove-local-optgroup') {
+    console.log('removing from local');
+    removeLocalProject(title);
+    updateSelect();
+  } else if (optGroup === 'remove-remote-optgroup') {
+    console.log('removing from remote');
+    updateSelect();
   }
 });
 
