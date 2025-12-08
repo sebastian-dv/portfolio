@@ -5,13 +5,18 @@ function getLocal() {
   return JSON.parse(localStorage.getItem('projects')) || [];
 }
 
-function setLocal(cards) {
-  localStorage.setItem('projects', JSON.stringify(cards));
+function setLocal(projects) {
+  localStorage.setItem('projects', JSON.stringify(projects));
 }
 
 function getLocalProject(title) {
-  const cards = getLocal();
-  return cards.find(c => c.title === title);
+  const projects = getLocal();
+  return projects.find(p => p.title === title);
+}
+
+function getLocalProjectIndex(title) {
+  const projects = getLocal();
+  return projects.findIndex(p => p.title === title);
 }
 
 function flash(el) {
@@ -35,8 +40,8 @@ function formError(err, output, el) {
 }
 
 function createLocal(title, img, imgAlt, desc, link) {
-  const cards = getLocal();
-  const newCard = {
+  const projects = getLocal();
+  const newProject = {
     'title': title,
     'img': img,
     'imgAlt': imgAlt,
@@ -51,8 +56,8 @@ function createLocal(title, img, imgAlt, desc, link) {
     formError('A project with that title already exists', output, title);
     return;
   }
-  cards.push(newCard);
-  setLocal(cards);
+  projects.push(newProject);
+  setLocal(projects);
 }
 
 const createForm = document.querySelector('#create-form');
@@ -78,16 +83,10 @@ createForm.addEventListener('submit', (event) => {
 });
 
 function updateSelect() {
-  const updateSelect = document.querySelector('#update-select');
-  const removeSelect = document.querySelector('#remove-select');
-  const placeholder = document.createElement('option');
-  placeholder.value = '';
-  const placeholder2 = placeholder.cloneNode('true');
-  updateSelect.appendChild(placeholder);
-  removeSelect.appendChild(placeholder2);
-
   const updateLocalOptGroup = document.querySelector('#update-local-optgroup');
   const removeLocalOptGroup = document.querySelector('#remove-local-optgroup');
+  updateLocalOptGroup.innerHTML = '';
+  removeLocalOptGroup.innerHTML = '';
   const localProjects = getLocal();
   localProjects.forEach((project) => {
     const option = document.createElement('option');
@@ -110,7 +109,7 @@ function clearForm(form) {
 }
 
 const updateSelectEl = document.querySelector('#update-select')
-updateSelectEl.addEventListener('change', (event) => {
+updateSelectEl.addEventListener('change', () => {
   console.log('change detected');
   const form = document.querySelector('#update-form');
   const fields = form.elements;
@@ -126,3 +125,48 @@ updateSelectEl.addEventListener('change', (event) => {
     clearForm(form);
   }
 })
+
+function updateLocalProject(title, fields) {
+  const projects = getLocal();
+  const index = getLocalProjectIndex(title);
+  const updatedProject = {
+    'title': fields['title'].value,
+    'img': fields['image'].value,
+    'imgAlt': fields['image-alt'].value,
+    'desc': fields['desc'].value,
+    'link': fields['link'].value
+  };
+  projects[index] = {
+    ...projects[index],
+    ...updatedProject
+  };
+  setLocal(projects);
+}
+
+const updateForm = document.querySelector('#update-form');
+updateForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const fields = updateForm.elements;
+  const select = fields['select'];
+  const option = select.options[select.selectedIndex];
+  const title = option.value;
+  const output = document.querySelector('#update-output');
+  if (title === '') {
+    formError('Please select a project', output, select);
+    return;
+  }
+  const optGroup = option.closest('optgroup').id;
+  if (optGroup === 'update-local-optgroup') {
+    console.log('updating local');
+    updateLocalProject(title, fields);
+    updateSelect();
+    clearForm(updateForm);
+  } else if (optGroup === 'update-remote-optgroup') {
+    console.log('updating remote');
+    updateSelect();
+    clearForm(updateForm);
+  }
+});
+
+clearForm(createForm);
+clearForm(updateForm);
