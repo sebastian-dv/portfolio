@@ -96,7 +96,7 @@ createForm.addEventListener('submit', (event) => {
   }
 });
 
-function updateSelect() {
+async function updateSelect() {
   const updateLocalOptGroup = document.querySelector('#update-local-optgroup');
   const removeLocalOptGroup = document.querySelector('#remove-local-optgroup');
   updateLocalOptGroup.innerHTML = '';
@@ -109,6 +109,19 @@ function updateSelect() {
     const option2 = option.cloneNode(true);
     updateLocalOptGroup.appendChild(option);
     removeLocalOptGroup.appendChild(option2);
+  });
+  const updateRemoteOptGroup = document.querySelector('#update-remote-optgroup');
+  const removeRemoteOptGroup = document.querySelector('#remove-remote-optgroup');
+  updateRemoteOptGroup.innerHTML = '';
+  removeRemoteOptGroup.innerHTML = '';
+  const remoteProjects = await getRemote();
+  remoteProjects.forEach((project) => {
+    const option = document.createElement('option');
+    option.value = project.title;
+    option.textContent = project.title;
+    const option2 = option.cloneNode(true);
+    updateRemoteOptGroup.appendChild(option);
+    removeRemoteOptGroup.appendChild(option2);
   });
 }
 updateSelect();
