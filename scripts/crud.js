@@ -9,7 +9,7 @@ function setLocal(cards) {
   localStorage.setItem('projects', JSON.stringify(cards));
 }
 
-function containsProject(title) {
+function getLocalProject(title) {
   const cards = getLocal();
   return cards.find(c => c.title === title);
 }
@@ -44,7 +44,7 @@ function createLocal(title, img, imgAlt, desc, link) {
     'link': link,
     'target': link === '' ? '_self' : '_blank'
   };
-  if (containsProject(title)) {
+  if (getLocalProject(title)) {
     console.log('duplicate project title');
     let output = document.querySelector('#create-output');
     let title = document.querySelector('#create-form').elements['title'];
@@ -69,7 +69,59 @@ form.addEventListener('submit', (event) => {
   if (buttonId === 'create-local') {
     console.log('create local project-card')
     createLocal(title, img, imgAlt, desc, link);
+    updateSelect();
   } else if (buttonId === 'create-remote') {
     console.log('create remote project-card')
+    updateSelect();
   }
 });
+
+function updateSelect() {
+  const updateSelect = document.querySelector('#update-select');
+  const removeSelect = document.querySelector('#remove-select');
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  const placeholder2 = placeholder.cloneNode('true');
+  updateSelect.appendChild(placeholder);
+  removeSelect.appendChild(placeholder2);
+
+  const updateLocalOptGroup = document.querySelector('#update-local-optgroup');
+  const removeLocalOptGroup = document.querySelector('#remove-local-optgroup');
+  const localProjects = getLocal();
+  localProjects.forEach((project) => {
+    const option = document.createElement('option');
+    option.value = project.title;
+    option.textContent = project.title;
+    const option2 = option.cloneNode(true);
+    updateLocalOptGroup.appendChild(option);
+    removeLocalOptGroup.appendChild(option2);
+  });
+}
+updateSelect();
+
+function clearForm(form) {
+  const fields = form.elements;
+  fields['title'].value = '';
+  fields['image'].value = '';
+  fields['image-alt'].value = '';
+  fields['desc'].value = '';
+  fields['link'].value = '';
+}
+
+const updateSelectEl = document.querySelector('#update-select')
+updateSelectEl.addEventListener('change', (event) => {
+  console.log('change detected');
+  const form = document.querySelector('#update-form');
+  const fields = form.elements;
+  const title = fields['select'].value;
+  const project = getLocalProject(title);
+  if (project) {
+    fields['title'].value = project.title;
+    fields['image'].value = project.img;
+    fields['image-alt'].value = project.imgAlt;
+    fields['desc'].value = project.desc;
+    fields['link'].value = project.link;
+  } else {
+    clearForm(form);
+  }
+})

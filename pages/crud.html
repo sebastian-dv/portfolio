@@ -63,12 +63,19 @@
         <output id="create-output"></output>
       </fieldset>
     </form>
+
     <form id="update-form" class="card" method="post">
       <fieldset>
         <legend>
           <h2>Update Project</h2>
         </legend>
         <hr>
+
+        <label for="update-select">Select a Project</label>
+        <select id="update-select" name="select">
+          <optgroup id="update-local-optgroup" label="Local"></optgroup>
+          <optgroup id="update-remote-optgroup" label="Remote"></optgroup>
+        </select>
 
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
@@ -85,13 +92,12 @@
         <label for="desc">Description</label>
         <textarea name="desc" id="desc" rows="4"></textarea>
 
-        <div id="update-buttons">
-          <button id="update-local">Update Local</button>
-          <button id="update-remote">Update Remote</button>
-        </div>
+        <button>Update</button>
+
         <output id="update-output"></output>
       </fieldset>
     </form>
+
     <form id="remove-form" class="card" method="post">
       <fieldset>
         <legend>
@@ -99,13 +105,14 @@
         </legend>
         <hr>
 
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
+        <label for="remove-select">Select a Project</label>
+        <select id="remove-select">
+          <optgroup id="remove-local-optgroup" label="Local"></optgroup>
+          <optgroup id="remove-remote-optgroup" label="Remote"></optgroup>
+        </select>
 
-        <div id="remove-buttons">
-          <button id="remove-local">Remove Local</button>
-          <button id="remove-remote">Remove Remote</button>
-        </div>
+        <button>Remove</button>
+
         <output id="remove-output"></output>
       </fieldset>
     </form>
