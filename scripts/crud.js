@@ -135,19 +135,30 @@ function clearForm(form) {
   fields['link'].value = '';
 }
 
+function populateForm(fields, project) {
+  fields['title'].value = project.title;
+  fields['image'].value = project.img;
+  fields['image-alt'].value = project.imgAlt;
+  fields['desc'].value = project.desc;
+  fields['link'].value = project.link;
+}
+
 const updateSelectEl = document.querySelector('#update-select')
-updateSelectEl.addEventListener('change', () => {
+updateSelectEl.addEventListener('change', async () => {
   console.log('change detected');
   const form = document.querySelector('#update-form');
   const fields = form.elements;
   const title = fields['select'].value;
   const project = getLocalProject(title);
   if (project) {
-    fields['title'].value = project.title;
-    fields['image'].value = project.img;
-    fields['image-alt'].value = project.imgAlt;
-    fields['desc'].value = project.desc;
-    fields['link'].value = project.link;
+    populateForm(fields, project);
+  } else {
+    clearForm(form);
+  }
+  const remoteProjects = await getRemote();
+  const remoteProject = remoteProjects.find(p => p.title === title);
+  if (remoteProject) {
+    populateForm(fields, remoteProject);
   } else {
     clearForm(form);
   }
@@ -190,8 +201,11 @@ updateForm.addEventListener('submit', (event) => {
     clearForm(updateForm);
   } else if (optGroup === 'update-remote-optgroup') {
     console.log('updating remote');
-    updateSelect();
+    updateRemote(title, fields);
     clearForm(updateForm);
+    setTimeout(() => {
+      updateSelect();
+    }, 3000);
   }
 });
 
@@ -214,7 +228,10 @@ removeForm.addEventListener('submit', (event) => {
     updateSelect();
   } else if (optGroup === 'remove-remote-optgroup') {
     console.log('removing from remote');
-    updateSelect();
+    removeRemote(title);
+    setTimeout(() => {
+      updateSelect();
+    }, 3000);
   }
 });
 
@@ -240,6 +257,34 @@ async function createRemote(newProject) {
   const remoteProjects = await getRemote();
   remoteProjects.push(newProject);
   await setRemote(remoteProjects);
+}
+
+async function updateRemote(title, fields) {
+  const projects = await getRemote();
+
+  const index = projects.findIndex(p => p.title === title);
+  const updatedProject = {
+    'title': fields['title'].value,
+    'img': fields['image'].value,
+    'imgAlt': fields['image-alt'].value,
+    'desc': fields['desc'].value,
+    'link': fields['link'].value
+  };
+
+  projects[index] = {
+    ...projects[index],
+    ...updatedProject
+  };
+
+  await setRemote(projects);
+}
+
+async function removeRemote(title) {
+  const projects = await getRemote();
+
+  const updated = projects.filter(p => p.title !== title);
+
+  await setRemote(updated);
 }
 
 clearForm(createForm);
