@@ -162,7 +162,7 @@ body {
   main#home {
     #landing-section {
       padding-top: 5vh;
-      height: calc(100vh - var(--header-height, 10vh));
+      height: 100%;
       #landing-pictures {
         display: flex;
         #portrait-placeholder {
@@ -201,12 +201,16 @@ body {
     }
   }
   main#projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    picture {
+      filter: drop-shadow(0 0 0.4rem #101010);
+    }
     #load-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-bottom: 1.5rem;
-
     }
     #project-showcase {
       display: flex;

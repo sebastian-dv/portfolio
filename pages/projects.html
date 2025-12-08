@@ -34,6 +34,30 @@
   <hr>
 
   <main id="projects">
+
+    <section class="card">
+      <h2>Currently Working On</h2>
+      <hr>
+      <div class="content-picture">
+        <div>
+          <p>I'm currently working on a project that uses the <i>Instagram API</i> to retrieve and send user messages
+            without any other functionality. This project is just for fun and for learning more about mobile
+            development,
+            using APIs, and to stay off the reels section on Instagram.</p>
+          <label for="project-progress">Project progress:</label>
+          <progress id="project-progress" max="100" value="30">30%</progress>
+        </div>
+        <picture>
+          <source type="image/webp" srcset="../images/instagram-thumbnail-200.webp,
+                                            ../images/instagram-thumbnail-400.webp" media="(width < 768px)">
+          <source type="image/jpeg" srcset="../images/instagram-thumbnail-200.jpg,
+                                            ../images/instagram-thumbnail-400.jpg" media="(width < 768px)">
+          <img src="../images/instagram-thumbnail-400.jpg" alt="instagram app on iphone">
+        </picture>
+      </div>
+    </section>
+
+
     <section id="load-buttons">
       <button id="load-local">Load Local</button>
       <button id="load-remote">Load Remote</button>
