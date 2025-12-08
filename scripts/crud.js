@@ -55,24 +55,25 @@ function createLocal(title, img, imgAlt, desc, link) {
   setLocal(cards);
 }
 
-const form = document.querySelector('#create-form');
-form.addEventListener('submit', (event) => {
+const createForm = document.querySelector('#create-form');
+createForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const buttonId = event.submitter.id;
-  const field = form.elements;
+  const field = createForm.elements;
   const title = field['title'].value.trim();
   const img = field['image'].value.trim();
   const imgAlt = field['image-alt'].value.trim();
   const desc = field['desc'].value.trim();
   const link = field['link'].value.trim();
-  console.log(field);
   if (buttonId === 'create-local') {
     console.log('create local project-card')
     createLocal(title, img, imgAlt, desc, link);
     updateSelect();
+    clearForm(createForm);
   } else if (buttonId === 'create-remote') {
     console.log('create remote project-card')
     updateSelect();
+    clearForm(createForm);
   }
 });
 
