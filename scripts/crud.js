@@ -9,12 +9,6 @@ function setLocal(projects) {
   localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-function removeLocalProject(title) {
-  const projects = getLocal();
-  const updated = projects.filter(p => p.title !== title);
-  setLocal(updated);
-}
-
 function getLocalProject(title) {
   const projects = getLocal();
   return projects.find(p => p.title === title);
@@ -45,16 +39,9 @@ function formError(err, output, el) {
   flash(el);
 }
 
-function createLocal(title, img, imgAlt, desc, link) {
+function createLocal(project) {
   const projects = getLocal();
-  const newProject = {
-    'title': title,
-    'img': img,
-    'imgAlt': imgAlt,
-    'desc': desc,
-    'link': link,
-    'target': link === '' ? '_self' : '_blank'
-  };
+  const title = project.title;
   if (getLocalProject(title)) {
     console.log('duplicate project title');
     let output = document.querySelector('#create-output');
@@ -62,9 +49,16 @@ function createLocal(title, img, imgAlt, desc, link) {
     formError('A project with that title already exists', output, title);
     return;
   }
-  projects.push(newProject);
+  projects.push(project);
   setLocal(projects);
 }
+
+function removeLocal(title) {
+  const projects = getLocal();
+  const updated = projects.filter(p => p.title !== title);
+  setLocal(updated);
+}
+
 
 const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (event) => {
@@ -76,13 +70,27 @@ createForm.addEventListener('submit', (event) => {
   const imgAlt = field['image-alt'].value.trim();
   const desc = field['desc'].value.trim();
   const link = field['link'].value.trim();
+  const output = document.querySelector('#create-output');
+  if (title === '') {
+    formError('Project title is required', output, field['title']);
+    return;
+  }
+  const newProject = {
+    'title': title,
+    'img': img,
+    'imgAlt': imgAlt,
+    'desc': desc,
+    'link': link,
+    'target': link === '' ? '_self' : '_blank'
+  };
   if (buttonId === 'create-local') {
     console.log('create local project-card')
-    createLocal(title, img, imgAlt, desc, link);
+    createLocal(newProject);
     updateSelect();
     clearForm(createForm);
   } else if (buttonId === 'create-remote') {
     console.log('create remote project-card')
+    createRemote(newProject);
     updateSelect();
     clearForm(createForm);
   }
@@ -132,7 +140,7 @@ updateSelectEl.addEventListener('change', () => {
   }
 })
 
-function updateLocalProject(title, fields) {
+function updateLocal(title, fields) {
   const projects = getLocal();
   const index = getLocalProjectIndex(title);
   const updatedProject = {
@@ -164,7 +172,7 @@ updateForm.addEventListener('submit', (event) => {
   const optGroup = option.closest('optgroup').id;
   if (optGroup === 'update-local-optgroup') {
     console.log('updating local');
-    updateLocalProject(title, fields);
+    updateLocal(title, fields);
     updateSelect();
     clearForm(updateForm);
   } else if (optGroup === 'update-remote-optgroup') {
@@ -189,13 +197,37 @@ removeForm.addEventListener('submit', (event) => {
   const optGroup = option.closest('optgroup').id;
   if (optGroup === 'remove-local-optgroup') {
     console.log('removing from local');
-    removeLocalProject(title);
+    removeLocal(title);
     updateSelect();
   } else if (optGroup === 'remove-remote-optgroup') {
     console.log('removing from remote');
     updateSelect();
   }
 });
+
+async function getRemote() {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`);
+  const json = await res.json();
+  const projects = json.record;
+  return projects;
+}
+
+async function setRemote(projects) {
+  await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Access-Key': ACCESS_KEY
+    },
+    body: JSON.stringify(projects)
+  });
+}
+
+async function createRemote(newProject) {
+  const remoteProjects = await getRemote();
+  remoteProjects.push(newProject);
+  await setRemote(remoteProjects);
+}
 
 clearForm(createForm);
 clearForm(updateForm);
