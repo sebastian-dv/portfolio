@@ -184,6 +184,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    #about-me {
+      div {
+        picture {
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
     #skills {
       ul {
         list-style: none;
@@ -408,7 +418,13 @@ body {
         gap: 2rem;
       }
     }
-    main#about { }
+    main#about { 
+      #about-me {
+        div {
+          display: flex;
+        }
+      }
+    }
     main#projects { }
     main#contact {
       display: flex;
