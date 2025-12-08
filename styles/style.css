@@ -164,7 +164,6 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 5vh;
       height: 100%;
       #landing-pictures {
         display: flex;
